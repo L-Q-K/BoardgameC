@@ -42,16 +42,16 @@ def index():
 
 @app.route('/1234')
 def room():
-    for j in range(20):
-        for player in room_details[0]["player_name"][j]:
-            i = randint(0,16)
-            r = roles[i]
-            p = Player_detail(name = player,
-                            role = r["role_name"],
-                            phe = r["role_phe"],
-                            ability = r["role_ability"]).save()
+    for player in room_details[0]["player_name"]:
+        i = randint(0,16)
+        r = roles[i]
+        p = Player_detail(name = player,
+                        role = r["role_name"],
+                        phe = r["role_phe"],
+                        ability = r["role_ability"])
 
-    return render_template('test.html',Room_detail = Room_detail.objects(), Player_detail = Player_detail.objects())
+    player_details = Player_detail.objects()
+    return render_template('test.html',Room_detail = Room_detail.objects(), _ = player_details [1] )
 
 if __name__ == '__main__':
   app.run(debug=True)
