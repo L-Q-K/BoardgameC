@@ -34,9 +34,7 @@ player_names = Room_detail(player_name = pn)
 room_details = Room_detail.objects()
 player_details = Player_detail.objects()
 roles = Role.objects()
-i = randint(1,17)
-r = roles [i]
-print(r["role_phe"])
+
 
 @app.route('/')
 def index():
@@ -45,15 +43,15 @@ def index():
 @app.route('/1234')
 def room():
     for j in range(20):
-        for player in room_details[j]["player_name"]:
-            i = randint(1,17)
+        for player in room_details[0]["player_name"][j]:
+            i = randint(0,16)
             r = roles[i]
             p = Player_detail(name = player,
                             role = r["role_name"],
                             phe = r["role_phe"],
                             ability = r["role_ability"]).save()
 
-    return render_template('test.html',Room_detail = Room_detail.objects())#, Player_detail = Player_detail.objects())
+    return render_template('test.html',Room_detail = Room_detail.objects(), Player_detail = Player_detail.objects())
 
 if __name__ == '__main__':
   app.run(debug=True)
