@@ -86,7 +86,5 @@ def index():
         room_id = session['room_id']
         redirect("/room/" + room_id)
 
-
-
 if __name__ == '__main__':
   app.run(debug=True)
