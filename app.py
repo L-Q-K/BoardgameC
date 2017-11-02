@@ -12,29 +12,10 @@ class Room_detail(Document):
     acess_code = StringField()
     player_name = ListField(StringField())
 
-
-# class Player_detail(Document):
-#     #char_image = StringField ()
-#     name = StringField ()
-#     role = StringField ()
-#     phe = StringField()
-#     ability = StringField ()
-
 class Role (Document):
     role_name = StringField()
     role_phe = StringField()
     role_ability = StringField()
-
-def new_room(i):
-    room_code = get_room_code ()
-    pn = []
-    for i in range(i):
-        pn.append("Player " + str(i+1))
-    player_names = Room_detail(player_name = pn,
-                                acess_code = room_code)
-    player_names.save()
-
-    return room_code
 
 def get_room_code():
     code = ""
@@ -43,48 +24,66 @@ def get_room_code():
     for char in range(6):
         code = code + possible[randint(0,len(possible)-1)]
 
-    return code;
+    print(code)
+
+    return code
 
 room_details = Room_detail.objects()
-player_details = Player_detail.objects()
 roles = Role.objects()
 
+app.config["SECRET_KEY"] = "43xf$=DLmQdhWVN*-Yg!s^NM-N&P8WedV"
 
-@app.route("room/<room_id>")
-def room(room_id):
+@app.route("/room/<room_code>")
+def room(room_code):
     #get room data from mlab in HTML
-    session["room_id"] = room_id
+    session["room_code"] = room_code
+
     if "player_id" not in session:
         session["player_id"] = uuid.uuid4().hex
 
         #Roll roles:
         i = randint (0,16)
         r = roles[i] #Get role
-        session["player_role"] = r
+        session["player_role"] = r["role_name"]
+        session["player_phe"] = r["role_phe"]
+        session["player_ability"] = r["role_ability"]
 
 
-    pd = session["player_role"]
+    pd = {
+        "role_name" : session["player_role"],
+        "role_phe" : session["player_phe"],
+        "role_ability" : session["player_ability"]
+    }
 
-    return render_template('test.html',Room_detail = Room_detail.objects(), _ = pd )
+    return render_template('room_test.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
 
 @app.route('/')
 def index():
-    if "room_id" not in session:
-        if request.args["action"] == "create":
-            # Add_player to room"
-            args = request.args
-            nop = args["nop"]
-            room_id = add_player(int(nop))
 
-            redirect("/room/" + room_id)
+    if "room_code" not in session:
+        if "Create" in request.args:
+            #Add_player to room:
+            nop = request.args["nop"]
+            room_code = get_room_code()
+            pn = []
+            for i in range(int(nop)):
+                pn.append("Player " + str(i+1))
+            player_names = Room_detail(player_name = pn,
+                                            acess_code = room_code)
+            player_names.save()
 
-        if request.args["action"] == "join":
-            room_id = request.form["room_id"]
-            redirect("/room/" + room_id)
-        return render_template('index.html')
+            session["room_code"] = room_code
+
+            return redirect("/room/" + room_code)
+        elif "Join" in request.form:
+             room_code = request.form["room_code"]
+
+             return redirect("/room/" + room_code)
+
+        return render_template("index.html")
     else:
-        room_id = session['room_id']
-        redirect("/room/" + room_id)
+        room_code = session['room_code']
+        return redirect("/room/" + room_code)
 
 if __name__ == '__main__':
   app.run(debug=True)

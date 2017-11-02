@@ -15,17 +15,16 @@
   <body>
     <h1 class ="jumbotron">Townie Doubt</h1>
     <div class="container">
-      <h3>What do you want to do :)</h3>
-      <br>
-      <form class="form-group">
-            <input type="text" name="room_id" value="" placeholder="For join room">
-            <input type="submit" name="join" value="Vào">
-      </form>
-      <br>
-      <form class="form-group">
-            <input type="number" name="nop" value="" placeholder="For create room">
-            <input type="submit" name="Create" value="Tạo">
-      </form>
+      <h1> Player_list </h1>
+      {% for _ in Room_detail["player_name"] %}
+        <h1> {{ _ }} </h1>
+        <br>
+      {% endfor %}
+
+      <h1> Your room's code: {{ Room_detail["acess_code"] }} <h1>
+      <h3> Your role: {{ pds["role_name"] }} </h3>
+      <h3> Your side: {{ pds["role_phe"]}} </h3>
+      <h4> Your ability : {{ pds["role_ability"] }}</h4>
     </div>
   </body>
 </html>
