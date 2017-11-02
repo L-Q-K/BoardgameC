@@ -75,10 +75,11 @@ def index():
             session["room_code"] = room_code
 
             return redirect("/room/" + room_code)
-        elif "Join" in request.form:
-             room_code = request.form["room_code"]
+        elif "join" in request.args:
+            room_code = request.args["room_code"]
+            session["room_code"] = room_code
 
-             return redirect("/room/" + room_code)
+            return redirect("/room/" + room_code)
 
         return render_template("index.html")
     else:
