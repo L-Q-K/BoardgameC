@@ -76,7 +76,7 @@ def room(room_code):
 
         return redirect('/')
 
-    return render_template('room_test.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
+    return render_template('room.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
 
 @app.route('/')
 def index():
