@@ -2,6 +2,7 @@ from flask import *
 import mlab
 from mongoengine import *
 from random import *
+from image import *
 import uuid
 
 mlab.connect()
@@ -27,9 +28,6 @@ def get_room_code():
     print(code)
 
     return code
-
-room_details = Room_detail.objects()
-roles = Role.objects()
 
 app.config["SECRET_KEY"] = "43xf$=DLmQdhWVN*-Yg!s^NM-N&P8WedV"
 
@@ -85,6 +83,10 @@ def index():
     else:
         room_code = session['room_code']
         return redirect("/room/" + room_code)
+
+@app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
 
 if __name__ == '__main__':
   app.run(debug=True)
