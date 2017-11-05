@@ -31,7 +31,7 @@ def get_room_code():
 
     return code
 
-role = Role.objects()
+roles = Role.objects()
 app.config["SECRET_KEY"] = "43xf$=DLmQdhWVN*-Yg!s^NM-N&P8WedV"
 
 @app.route("/room/<room_code>")
