@@ -24,3 +24,20 @@ body {
   height: 800px;
 
 }
+.a{
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.b{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.c{
+  width: 100px;
+  height: 50px;
+
+}
