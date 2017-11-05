@@ -23,8 +23,8 @@
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
+    background-image: url('https://cdn2.iconfinder.com/data/icons/thin-essentials-2/24/thin-1242_door_logout_exit-32.png');
+    background-position: 1px 5px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -32,7 +32,7 @@
 }
 
 input[type=text]:focus {
-    width: 100%;
+  width: 100%;
 }
 
 input[type=number] {
@@ -42,8 +42,8 @@ input[type=number] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    background-image: url('');
-    background-position: 10px 10px;
+    background-image: url('https://cdn0.iconfinder.com/data/icons/feather/96/circle-add-32.png');
+    background-position: 5px 7px;
     background-repeat: no-repeat;
     padding: 12px 0px 12px 40px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -89,7 +89,7 @@ form
    <form class=" form text-center">
          <input type="text" class="c" name="room_code" value="" placeholder="Nhập Số Phòng">
          <h5></h5>
-         <button type="button" class="btn btn-danger c" name="button">Vào</button>
+         <input type="submit" name="join" value="Vào">
   </form>
  </div>
  <div class="a" style="float:right;width: 50%">
@@ -99,10 +99,9 @@ form
 
 
    <form class="form text-center ">
-         <input id="room-name" type="text" class="c" name="nop" value="" placeholder="Tạo">
-
+         <input id="room-name" type="number" class="c" name="nop" value="" placeholder="Tạo">
          <h5></h5>
-         <button type="button" class="btn btn-danger c" name="button">Create</button>
+         <input type="submit" name="Create" value="Tạo">
 
        </div>
      </form>

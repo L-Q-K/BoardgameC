@@ -2,7 +2,7 @@ from flask import *
 import mlab
 from mongoengine import *
 from random import *
-from image import *
+# from image import *
 import uuid
 
 mlab.connect()
@@ -31,6 +31,7 @@ def get_room_code():
 
     return code
 
+role = Role.objects()
 app.config["SECRET_KEY"] = "43xf$=DLmQdhWVN*-Yg!s^NM-N&P8WedV"
 
 @app.route("/room/<room_code>")
@@ -55,6 +56,10 @@ def room(room_code):
         "role_ability" : session["player_ability"]
     }
 
+    if session == "":
+        session.clear()
+
+        return redirect("/")
     if "Out" in request.args or "Index" in request.args:
         session.clear()
         #Delete player:
@@ -98,20 +103,23 @@ def index():
                 abort(400)
         elif "join" in request.args:
             room_code = request.args["room_code"]
-            session["room_code"] = room_code
+            if room_code == "":
+                abort(400)
+            else:
+                session["room_code"] = room_code
 
-            #Add new player:
-            room_details = Room_detail.objects(acess_code = room_code).first()
-            if room_details is not None:
-                if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
-                    new_current_player = room_details["current_player"] + 1
-                    new_player_names = room_details["player_name"]
-                    new_player_names.append("Player" + str(new_current_player))
-                    room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
+                #Add new player:
+                room_details = Room_detail.objects(acess_code = room_code).first()
+                if room_details is not None:
+                    if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
+                        new_current_player = room_details["current_player"] + 1
+                        new_player_names = room_details["player_name"]
+                        new_player_names.append("Player" + str(new_current_player))
+                        room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
 
-            return redirect("/room/" + room_code)
+                return redirect("/room/" + room_code)
 
-        return render_template("index.html")
+        return render_template("homepage.html")
     else:
         room_code = session['room_code']
         return redirect("/room/" + room_code)
