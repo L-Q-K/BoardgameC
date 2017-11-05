@@ -14,7 +14,7 @@
     <style>
 
     input[type=text] {
-    width: 130px;
+    width: 200px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -33,7 +33,7 @@ input[type=text]:focus {
 }
 
 input[type=number] {
-    width: 130px;
+    width: 200px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -42,7 +42,7 @@ input[type=number] {
     background-image: url('searchicon.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 0px 12px 40px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
@@ -86,7 +86,7 @@ input[type=number]:focus {
    <form class="form-group">
          <input type="text" class="col-md-3" name="room_code" value="" placeholder="Nhập Số Phòng">
          <h5></h5>
-         <input type="submit" name="join" value="Vào">
+         <input type="submit" name="join" value="Vào" class="btn btn-danger">
  </div>
  <div style="float:right;">
    <!-- <button type="button" name="button">Tạo Phòng</button> -->
@@ -97,7 +97,7 @@ input[type=number]:focus {
    <form class="form-group">
          <input type="number" class="" name="nop" value="" placeholder="Tạo Phòng">
          <h5></h5>
-         <input type="submit" name="Create" value="Tạo">
+         <input type="submit" name="Create" value="Tạo" class="btn btn-danger">
 
        </div>
      </form>
