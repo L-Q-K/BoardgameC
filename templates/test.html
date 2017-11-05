@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- Template by html.am -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+		<title>Gameplay &mdash; Left Menu with Header &amp; Footer</title>
+		<style type="text/css">
+			body {
+				margin:0;
+				padding:0;
+				font-family: Sans-Serif;
+				line-height: 1.5em;
+			}
+			#header {
+				background: #bbb;
+				height: 50px;
+			}
+			#header h1 {
+				margin: 0;
+				padding-top: 15px;
+			}
+			main {
+				padding-bottom: 10010px;
+				margin-bottom: -10000px;
+				float: left;
+				width: 100%;
+			}
+			#nav {
+				padding-bottom: 10010px;
+				margin-bottom: -10000px;
+				float: left;
+				width: 250px;
+				margin-left: -100%;
+				background: #eee;
+				border-style: groove;
+				border-width: 7px;
+			}
+			#footer {
+				clear: left;
+				width: 100%;
+				background: #bbb;
+				text-align: center;
+				padding: 4px 0;
+			}
+			#wrapper {
+				overflow: hidden;
+			}
+			#content {
+				margin-left: 450px;/* Same as 'nav' width */
+				margin-right: 400px; /* Same as 'nav' width */
+				height: 250px;
+				background: #eee;
+				border-style: double;
+				border-width: 7px;
+				text-align: center;
+			}
+
+			.innertube {
+				margin: 15px; /* Padding for content */
+				margin-top: 0;
+			}
+			p {
+				color: #555;
+			}
+			#box {
+				margin-left: 1180px;/* Same as 'nav' width */
+
+
+				height: 450px;
+				background: #eee;
+				border-style: groove;
+				border-width: 4px;
+				text-align: center;
+			}
+			nav ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			nav ul a {
+				color: darkgreen;
+				text-decoration: none;
+			}
+
+
+		</style>
+
+		<script type="text/javascript">
+			/* =============================
+			This script generates sample text for the body content.
+			You can remove this script and any reference to it.
+			 ============================= */
+			var bodyText=["The smaller your reality, the more convinced you are that you know everything.", "If the facts don't fit the theory, change the facts.", "The past has no power over the present moment.", "This, too, will pass.", "</p><p>You will not be punished for your anger, you will be punished by your anger.", "Peace comes from within. Do not seek it without.", "<h3>Heading</h3><p>The most important moment of your life is now. The most important person in your life is the one you are with now, and the most important activity in your life is the one you are involved with now."]
+			function generateText(sentenceCount){
+				for (var i=0; i<sentenceCount; i++)
+				document.write(bodyText[Math.floor(Math.random()*7)]+" ")
+			}
+$(function(){
+  var $curParent, Content;
+  $(document).delegate("span","click", function(){
+    if($(this).closest("s").length) {
+      Content = $(this).parent("s").html();
+      $curParent = $(this).closest("s");
+      $(Content).insertAfter($curParent);
+      $(this).closest("s").remove();
+    }
+    else {
+      $(this).wrapAll("<s />");
+    }
+  });
+});
+
+
+
+		</script>
+
+	</head>
+
+	<body style="background-color:grey;">
+
+		<header id="header">
+			<div class="innertube">
+				<a class="btn btn-secondary" href="https://towniedoubt.herokuapp.com/1234">New Game</a>
+                                <a class="btn btn-secondary" href="https://towniedoubt.herokuapp.com/">Leave Game</a>
+			</div>
+		</header>
+
+		<div id="wrapper">
+
+			<main>
+
+				<div id="content">
+				 {% for _ in Room_detail %}
+               <div class="innertube">
+
+						<h3>Players:</h3>
+
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+						<div>
+						 <span>{{ _["player_name"] }}</span>  
+						</div>
+
+
+
+
+				</div>
+				{% endfor %}
+			</div>
+
+			</main>
+
+			<nav id="nav">
+
+				<div class="innertube">
+					  <h7>Room Code:{{ Room_detail.id }}</h7>  <br><br>
+						<h5> You are: {{ _["name"] }} </h5> <br>
+						<h5> Your role:  {{ _["role"] }} </h5><br>
+
+            <h7>{{ _["ability"] }}</h7>  <br><br>
+
+						<h5> Side: {{ _["phe"] }} <h5>
+
+
+					<br>
+					<h3>Time:</h3>
+
+				</div>
+
+
+<br><br>
+			</nav>
+
+
+
+
+
+			<div id="box">
+
+	 					 <div class="innertube">
+
+	 				<h5>Potential mafias:</h5><br>
+
+	                                 <h5>Potentially be killed:</h5>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	 <div>
+	  <span>click</span>    <span>click</span>
+	 </div>
+	 		</div>
+
+
+		</div>
+
+
+
+</div>
+
+
+
+
+
+
+		<footer id="footer">
+			<div class="innertube">
+
+			</div>
+
+		</footer>
+
+
+	</body>
+</html>
