@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 class Room_detail(Document):
     acess_code = StringField()
+    current_player = IntField()
+    max_player = IntField()
     player_name = ListField(StringField())
 
 class Role (Document):
@@ -55,29 +57,59 @@ def room(room_code):
         "role_ability" : session["player_ability"]
     }
 
+    if "Out" in request.args or "Index" in request.args:
+        session.clear()
+        #Delete player:
+        room_details = Room_detail.objects(acess_code = room_code).first()
+        if room_details is not None:
+            if room_details["current_player"] - 1 != 0: # Nếu k phải người cuối cùng
+                new_current_player = room_details["current_player"] - 1
+                new_player_names = room_details["player_name"]
+                new_player_names.remove("Player" + str(new_current_player + 1))
+                room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
+            else:
+                room_details.delete()
+
+
+        return redirect('/')
+
     return render_template('room_test.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
 
 @app.route('/')
 def index():
-
     if "room_code" not in session:
         if "Create" in request.args:
             #Add_player to room:
             nop = request.args["nop"]
             room_code = get_room_code()
-            pn = []
-            for i in range(int(nop)):
-                pn.append("Player " + str(i+1))
-            player_names = Room_detail(player_name = pn,
+
+            if int(nop) > 0:
+                #Add this player:
+                pn = []
+                pn.append("Player 1 ")
+                player_names = Room_detail(player_name = pn,
+                                            current_player = 1,
+                                            max_player = nop,
                                             acess_code = room_code)
-            player_names.save()
+                player_names.save()
 
-            session["room_code"] = room_code
+                session["room_code"] = room_code
 
-            return redirect("/room/" + room_code)
+                return redirect("/room/" + room_code)
+            else:
+                abort(400)
         elif "join" in request.args:
             room_code = request.args["room_code"]
             session["room_code"] = room_code
+
+            #Add new player:
+            room_details = Room_detail.objects(acess_code = room_code).first()
+            if room_details is not None:
+                if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
+                    new_current_player = room_details["current_player"] + 1
+                    new_player_names = room_details["player_name"]
+                    new_player_names.append("Player" + str(new_current_player))
+                    room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
 
             return redirect("/room/" + room_code)
 
