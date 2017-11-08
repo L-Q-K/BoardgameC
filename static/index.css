@@ -1,17 +1,3 @@
-/*body  {
-  background-size: cover;
-  background-image: url("https://i.ytimg.com/vi/avp5x3CvHgw/maxresdefault.jpg");
-  background-color: #cccccc;
-  background-repeat: no-repeat;
-  background-color: black;
-  filter: blur(2px);
-  }*/
-
-/*body{
-background-image: url("https://i.ytimg.com/vi/avp5x3CvHgw/maxresdefault.jpg");
-filter: blur(2px);
-
-}*/
 body {
   position: fixed;
   left: 0;
@@ -36,8 +22,26 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-.c{
-  width: 100px;
-  height: 50px;
+.container{
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+.card-player{
+  /*border-top-left-radius: .25rem !important;
+  border-top-right-radius: .25rem !important;*/
+  border-style: double  !important;
+  border-width: 15px !important;
+  background: #e50404!important;
 
+}
+
+.note-card{
+  border-style: double  !important;
+  border-width: 15px !important;
+  background: rgba(249, 226, 153, 1) !important;
+}
+.index-but{
+  background-image: url("https://www.iconfinder.com/icons/133321/d_mark_icon#size=128");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
