@@ -58,17 +58,78 @@ input[type=number]:focus {
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#"></a>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Trang Chủ <span class="sr-only">(current)</span></a>
+        <div class="float-right">
+          <button type="button" class="btn btn-success btn-lg nav-link">Trang chủ</button>
+        </div>
+        <br>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Luật Chơi</a>
+        <button type="button" class="btn btn-info btn-lg nav-link" data-toggle="modal" data-target="#rulemodal">Luật Chơi</button>
+          <div class="modal fade" id="rulemodal" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Luật chơi</h4>
+                </div>
+                <div class="modal-body">
+                  <p>_ Khi đêm đến, người quản trò nói "Đêm tối đến và tất cả mọi người đang ngủ." , tất cả mọi người nhắm mắt lại.
+
+_ Sau đó, người quản trò nói "Mafia ơi hãy thức dậy", nhóm mafia (Tất cả nv thuộc phe Ác) mở mắt và hội ý bàn xem sẽ giết người dân nào, rồi đi "giết" người đó nhưng không được gây tiếng động. Rồi người quản trò nói "Mafia hãy ngủ đi", nhóm mafia nhắm mắt lại 1 lần nữa.
+
+_ Bây giờ cảnh sát sẽ mở mắt và bàn xem ai là người đáng nghi nhất (kẻ đã giết người), nếu chỉ đúng thì người quản trò gật đầu. Rồi quản trò nói "Cảnh sát ơi hãy ngủ đi!" cảnh sát nhắm mắt lại.
+
+_ Quản trò nói "Bác sĩ ơi hãy tỉnh giấc", bác sĩ tỉnh giấc và cứu 1 người, người mà bác sĩ nghi là bị hại, rồi sau đó đi "ngủ" tiếp.
+
+_ Tiếp theo là các nhân vật phe Neutral được gọi tùy theo Quản trò.
+
+_ Khi trời sáng, quản trò gọi mọi người "dậy" và thông báo tin tức: bao nhiêu người bị chết (hay được cứu sống). Nếu có người chết thì mỗi người dân chỉ được biểu quyết 1 lần và người nào có số phiếu cao nhất thì bị loại ra khỏi vòng chơi, và lá bài sẽ được công bố.
+
+_ Trò chơi cứ thế diễn ra cho tới khi tên mafia cuối cùng bị giết lúc đó người dân thắng, còn số người dân ít hơn mafia thì mafia thắng.
+
+_ Lưu ý: tất cả hoạt động trong đêm tối đều phải nhẹ nhàng, không được gây tiếng động. ​
+</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" class="btn btn-secondary">Dài quá không đọc nữa</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
       </li>
+<br>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Chi tiết</a>
+        <div class="float-right">
+            <button type="button" class="btn btn-success btn-lg nav-link" data-toggle="modal" data-target="#creditmodal">Bản quyền :)</button>
+        </div>
+          <!-- Modal -->
+          <div id="creditmodal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Credit</h4>
+                </div>
+                <div class="modal-body">
+                  <p><h3>PO: Đặng Nguyễn Phương Trang</h3> <br>
+                    <h3>Code chính: Khánh</h3><br>
+                    <h3>Bưng nước: Double Minh</h3></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" class="btn btn-secondary">Đọc cái này làm gì nữa ?</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
       </li>
       </ul>
     </nav>

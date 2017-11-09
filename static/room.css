@@ -1,0 +1,48 @@
+body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-position: right 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/OVoiMR9/blood-dripping-down-over-white-background_vj5idj5yl__F0000.png');
+  height: 800px;
+
+}
+.a{
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.b{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container{
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+.card-player{
+  /*border-top-left-radius: .25rem !important;
+  border-top-right-radius: .25rem !important;*/
+  border-style: double  !important;
+  border-width: 15px !important;
+  background: #e50404!important;
+
+}
+
+.note-card{
+  border-style: double  !important;
+  border-width: 15px !important;
+  background: rgba(249, 226, 153, 1) !important;
+}
+.index-but{
+  background-image: url("https://www.iconfinder.com/icons/133321/d_mark_icon#size=128");
+  background-repeat: no-repeat;
+  background-size: auto;
+}
