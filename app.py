@@ -49,17 +49,26 @@ def room(room_code):
         session["player_phe"] = r["role_phe"]
         session["player_ability"] = r["role_ability"]
 
+        room_details = Room_detail.objects(acess_code = room_code).first()
+        if room_details is not None:
+            if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
+                new_current_player = room_details["current_player"] + 1
+                new_player_names = room_details["player_name"]
+                new_player_names.append("Player" + str(new_current_player))
+                print(new_player_names)
+                room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
+
+                return redirect("/room/" + room_code)
+            else:
+                return "Room does not exist"
+
+
 
     pd = {
         "role_name" : session["player_role"],
         "role_phe" : session["player_phe"],
         "role_ability" : session["player_ability"]
     }
-
-    if session == "":
-        session.clear()
-
-        return redirect("/")
     if "Out" in request.args or "Index" in request.args:
         session.clear()
         #Delete player:
@@ -73,10 +82,9 @@ def room(room_code):
             else:
                 room_details.delete()
 
-
         return redirect('/')
 
-    return render_template('room.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
+    return render_template('new_room.html',Room_detail = Room_detail.objects(acess_code= room_code).first(), pds = pd )
 
 @app.route('/')
 def index():
@@ -117,7 +125,9 @@ def index():
                         new_player_names.append("Player" + str(new_current_player))
                         room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
 
-                return redirect("/room/" + room_code)
+                    return redirect("/room/" + room_code)
+                else:
+                    return "Room doesn't exist"
 
         return render_template("homepage.html")
     else:

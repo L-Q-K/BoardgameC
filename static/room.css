@@ -3,10 +3,11 @@ body {
   left: 0;
   right: 0;
   z-index: 1;
+  background-position: right 50px;
   background-size: cover;
   background-repeat: no-repeat;
   display: block;
-  background-image: url('mafiablured.jpg');
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/OVoiMR9/blood-dripping-down-over-white-background_vj5idj5yl__F0000.png');
   height: 800px;
 
 }
