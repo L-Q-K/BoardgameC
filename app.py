@@ -48,7 +48,7 @@ def room(room_code):
         session["player_role"] = r["role_name"]
         session["player_phe"] = r["role_phe"]
         session["player_ability"] = r["role_ability"]
-        
+
         room_details = Room_detail.objects(acess_code = room_code).first()
         if room_details is not None:
             if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
@@ -111,23 +111,23 @@ def index():
                 abort(400)
         elif "join" in request.args:
             room_code = request.args["room_code"]
-
             if room_code == "":
                 abort(400)
             else:
+                session["room_code"] = room_code
+
+                #Add new player:
                 room_details = Room_detail.objects(acess_code = room_code).first()
                 if room_details is not None:
-                    session["room_code"] = room_code
                     if room_details["current_player"] + 1 <= room_details["max_player"]: # Nếu còn slot
                         new_current_player = room_details["current_player"] + 1
                         new_player_names = room_details["player_name"]
                         new_player_names.append("Player" + str(new_current_player))
-                        print(new_player_names)
                         room_details.update(set__current_player = new_current_player,set__player_name = new_player_names )
 
                     return redirect("/room/" + room_code)
                 else:
-                    return "Room does not exist"
+                    return "Room doesn't exist"
 
         return render_template("homepage.html")
     else:
